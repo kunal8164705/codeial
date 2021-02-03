@@ -1,0 +1,27 @@
+{
+  "name": "codeial",
+  "version": "1.0.0",
+  "description": "my all social media app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "social"
+  ],
+  "author": "kunal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kunal8164705/codeial.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kunal8164705/codeial/issues"
+  },
+  "homepage": "https://github.com/kunal8164705/codeial#readme"
+}
