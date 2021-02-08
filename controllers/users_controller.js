@@ -5,6 +5,7 @@ const { use } = require('../routes');
 module.exports.profile=function(req,res){
     return res.render('users',{
         title:"profile"
+        
     });
 }
 
@@ -57,5 +58,35 @@ module.exports.Create=function(req,res){
 //crete session for the user
 
 module.exports.CreateSession=function(req,res){
+    
+        //steps to authenticate
+    //find the user
+        User.findOne({email:req.body.email},function(err,user){
+            if(err){console.log('error in finding user in signing in');   return;}
+
+            
+            //handle user found
+              if(user){
+                    
+                        //handle password don't match
+                            if(user.password!=req.body.password){
+                                return res.redirect('back');
+                            }
+                        //handle session creation
+                            res.cookie('user_id',user.id);
+                            return res.redirect('/users/profile');
+    
+              }else{
+                  //handle user not found
+                  return res.redirect('back');
+              }
+        });
+
+
+
+    
+
+
+
     
 }
