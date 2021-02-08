@@ -1,4 +1,6 @@
 module.exports.home=function(req,res){
+    console.log(req.cookies);
+    res.cookie('kamal',666);
     return res.render('home',{
         title:"Home"
     });
@@ -7,3 +9,4 @@ module.exports.home=function(req,res){
 module.exports.name=function(req,res){
     return res.end('<b style="font-size:2rem;">kunal</b>');
 }
+
