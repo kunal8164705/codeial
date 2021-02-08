@@ -74,7 +74,12 @@ module.exports.CreateSession=function(req,res){
                             }
                         //handle session creation
                             res.cookie('user_id',user.id);
-                            return res.redirect('/users/profile');
+                            // return res.redirect('/users/profile');
+                            return res.render('users',{
+                                title: user.name+" Profile",
+                                email: user.email,
+                                name: user.name
+                            });
     
               }else{
                   //handle user not found
