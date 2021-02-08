@@ -1,12 +1,28 @@
+const cookieParser = require('cookie-parser');
 const User=require('../models/user');
 const { use } = require('../routes');
 
 
 module.exports.profile=function(req,res){
-    return res.render('users',{
-        title:"profile"
+
+    // return res.render('users',{
+    //     title:"profile"
         
-    });
+    // });
+
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id,function(err,user){
+            if(user){
+                return res.render('users',{
+                    title:"user Profile",
+                    user:user
+                });
+            }
+            return res.redirect('/users/sign-in');
+        });
+    }else{
+        return res.redirect('/users/sign-in');
+        }
 }
 
 module.exports.post=function(req,res){
@@ -73,13 +89,16 @@ module.exports.CreateSession=function(req,res){
                                 return res.redirect('back');
                             }
                         //handle session creation
+                                else{
                             res.cookie('user_id',user.id);
-                            // return res.redirect('/users/profile');
-                            return res.render('users',{
-                                title: user.name+" Profile",
-                                email: user.email,
-                                name: user.name
-                            });
+                            return res.redirect('/users/profile');
+                                    
+                                }
+                            // return res.render('users',{
+                            //     title: user.name+" Profile",
+                            //     email: user.email,
+                            //     name: user.name
+                            // });
     
               }else{
                   //handle user not found
@@ -94,4 +113,9 @@ module.exports.CreateSession=function(req,res){
 
 
     
+}
+
+module.exports.signOut=function(req,res){
+    res.cookie('user_id',0);
+    return res.redirect('/users/sign-in');
 }
