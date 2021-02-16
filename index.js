@@ -9,7 +9,18 @@ const passport=require('passport');
 const LocalStrategy=require('./config/passport-local');
 const { pass } = require('./config/mongoose');
 const MongoStore=require('connect-mongo')(session);
+const sassMiddleware=require('node-sass-middleware');
 // const { urlencoded } = require('express');
+
+
+app.use(sassMiddleware({
+    src:'/assets/scss',
+    dest:'/assets/css',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/css'
+}));
+
 
 app.use(express.urlencoded());
 
@@ -52,7 +63,7 @@ app.use(session({
     )
 }));
 
-
+//using passport js 
 app.use(passport.initialize());
 app.use(passport.session());
 
