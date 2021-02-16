@@ -71,3 +71,9 @@ module.exports.Create=function(req,res){
 module.exports.CreateSession=function(req,res){
     return res.redirect('/');    
 }
+
+module.exports.destroySession=function(req,res){
+    ///passport js function   
+    req.logout();
+    return res.redirect('/');
+}
