@@ -1,9 +1,27 @@
+const Post=require('../models/post');
+
+
 module.exports.home=function(req,res){
-    console.log(req.cookies);
-    res.cookie('kamal',666);
+    // console.log(req.cookies);
+    // res.cookie('kamal',666);
+
+        /*for showing all posts only */
+//    Post.find({},function(err,posts){
+//     return res.render('home',{
+//         title:"Codeial | Home",
+//         posts:posts
+//      });
+//    });
+   
+//to show posts and also the user who posts that
+   Post.find({}).populate('user').exec(function(err,posts){
     return res.render('home',{
-        title:"Home"
-    });
+        title:"Codeial | Home",
+        posts:posts
+     });
+   });
+
+    
 }
 
 module.exports.name=function(req,res){
