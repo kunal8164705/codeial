@@ -3,9 +3,10 @@ footer {
   font-size: x-large;
   color: whitesmoke;
   display: flex;
-  position: fixed;
   bottom: 0;
-  width: 100%; }
+  margin-top: 24%;
+  width: 100%;
+  height: 150px; }
   footer #info {
     width: 50%; }
   footer #list ul li {
