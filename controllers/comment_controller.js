@@ -14,12 +14,12 @@ module.exports.create = async function (req, res) {
             })
             post.comments.push(comment);
             post.save();  //so whenever we push something we have to also save it
-
+            req.flash('success','your comment is successfully added');
             res.redirect('/');
 
         }
     } catch (err) {
-        console.log('error', err);
+        req.flash('error',err);
         return;
     }
 }
@@ -34,13 +34,15 @@ module.exports.destroy = async function (req, res) {
             comment.remove();
 
             Post.findByIdAndUpdate(postId, { $pull: { comments: req.params.id } }, function (err, post) {
+                req.flash('success','comment deleted successfully')
                 return res.redirect('back');
             })
         } else {
+            req.flash('error','you are not authorised to delete this comment');
             return res.redirect('back');
         }
     } catch (err) {
-        console.log('error', err);
+        req.flash('error',err);
     }
 
 }
