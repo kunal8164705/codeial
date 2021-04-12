@@ -15,7 +15,7 @@ module.exports.create = async function (req, res) {
             post.comments.push(comment);
             post.save();  //so whenever we push something we have to also save it
             req.flash('success','your comment is successfully added');
-            res.redirect('/');
+           res.redirect('/');
 
         }
     } catch (err) {
@@ -43,6 +43,7 @@ module.exports.destroy = async function (req, res) {
         }
     } catch (err) {
         req.flash('error',err);
+        return;
     }
 
 }
