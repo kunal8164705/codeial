@@ -6,6 +6,7 @@ const expressLayouts=require('express-ejs-layouts');
 const db=require('./config/mongoose');
 const session=require('express-session');
 const passport=require('passport');
+const JwtStrategy=require('./config/passport-jwt-strategy');
 const LocalStrategy=require('./config/passport-local');
 const { pass } = require('./config/mongoose');
 const MongoStore=require('connect-mongo')(session);
