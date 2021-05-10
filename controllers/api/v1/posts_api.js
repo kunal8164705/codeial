@@ -31,8 +31,9 @@ module.exports.destroy=async function(req,res){
   
    
     try{
-    // if(post.user==req.user.id){
         let post=await Post.findById(req.params.id);
+    if(post.user==req.user.id){
+        
         post.remove();
 
         await Comment.deleteMany({post:req.params.id});
@@ -43,10 +44,11 @@ module.exports.destroy=async function(req,res){
 
         
         
-    // } else{
-    //     req.flash('error','you are not authorised to delete this post');
-    //     return res.redirect('back');
-    // }
+    } else{
+        return res.status(401).json({
+            message:"You cannot delete this Post"
+        });
+    }
 }catch(err){
     console.log("***********",err);
     return res.status(500).json({
