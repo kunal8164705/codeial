@@ -8,6 +8,7 @@ const session=require('express-session');
 const passport=require('passport');
 const JwtStrategy=require('./config/passport-jwt-strategy');
 const LocalStrategy=require('./config/passport-local');
+const passportGoogle=require('./config/passport-google-oauth-strategy');
 const { pass } = require('./config/mongoose');
 const MongoStore=require('connect-mongo')(session);
 const sassMiddleware=require('node-sass-middleware');
